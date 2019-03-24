@@ -1,0 +1,88 @@
+.container {
+  padding: 16px;
+  margin: 0 0 0 0;
+  width: 80%;
+  height: 100vh;
+  color: #f2f2f2;
+  left: 0;
+  position: relative;
+
+  @media(max-width: 1024px) {
+    width: auto;
+    padding: 32px;
+  }
+
+  .timeline_title {
+    h1 {
+      color: #ffe300;
+      text-shadow: 2px 2px 1px #333;
+      font-family: sans-serif;
+    }
+  }
+
+  .timeline {
+    color: #fff;
+    border-top: green;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    padding: 16px 72px 16px 16px;
+
+    @media(max-width: 767px) {
+      padding: 16px;
+    }
+
+
+    .flex-1 {
+      flex: 1;
+    }
+
+    .flex-2 {
+      flex: 2;
+    }
+
+    .flex-3 {
+      flex: 3;
+    }
+
+    .flex-4 {
+      flex: 1;
+    }
+
+    .flex-column {
+      flex-direction: column;
+    }
+    .flex-row {
+      flex-direction: row;
+    }
+
+    .card {
+      border-top: 4px solid #ffe300;
+      background: #fff;
+      color: #333;
+      margin: 16px 8px;
+      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      flex: 2;
+      transition: all 0.5s ease;
+      text-align: left;
+
+      &:hover {
+        box-shadow: 2px 4px 2px #ffe300;
+      }
+
+
+      .title {
+        font-weight: bold;
+        font-size: 1.5rem;
+        flex: 1;
+        min-width: 200px;
+      }
+      .body {
+        font-size: 1rem;
+        min-width: 200px;
+      }
+    }
+  }
+}

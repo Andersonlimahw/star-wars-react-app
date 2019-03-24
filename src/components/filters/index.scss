@@ -1,0 +1,40 @@
+.filters {
+  background: #000;
+  color:#ffe300;
+  border-left: 4px solid #ffe300;
+  position: fixed;
+  width: 20%;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  text-align: left;
+  padding: 16px;
+  
+  .container {
+    display: block;
+
+    .item {
+      color: #ffe300;
+      padding: 8px 0;
+      text-shadow: 1px 4px 1px #333;
+      font-size: 1.5rem;
+      font-weight: 400;
+
+
+      @media(max-width: 767px) {
+        display: inline-block;
+        float: left;
+        margin: 0 16px;
+      }
+
+    }
+
+
+  }
+
+
+
+  @media(max-width: 1024px) {
+    display: none;
+  }
+}

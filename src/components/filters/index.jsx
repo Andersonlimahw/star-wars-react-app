@@ -19,7 +19,7 @@ export class Filters extends React.Component {
         return (
             <div className="filters">
                 <div className="item">
-                    <h3>Aply filter by name</h3>
+                    <h3>Filter by name</h3>
                     <h5 onClick={() => clear()}>
                         &times;
                         Clear filter

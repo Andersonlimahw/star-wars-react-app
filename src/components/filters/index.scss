@@ -19,6 +19,12 @@
       text-shadow: 1px 4px 1px #333;
       font-size: 1.5rem;
       font-weight: 400;
+      transition: all 0.8s;
+      &:hover {
+        color: #fff;
+        text-shadow: 1px 4px 1px #ffe300;
+        cursor: pointer;
+      }
 
 
       @media(max-width: 767px) {

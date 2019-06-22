@@ -3,157 +3,122 @@ import React from 'react';
 import './index.scss';
 import logo from "../../logo.svg";
 import TabFilters from "../../enums/ETabFilter";
+import Axios from "axios";
 
 export class Tabs extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentTab: TabFilters.planets.id
+            currentTab: TabFilters.planets,
+            tabContent: [],
+            count: 0,
+            loading: false,
         };
     }
 
-    static defaultProps = {
-        loading: false,
+    componentDidMount() {
+        this.loadFilter('planets');
     }
+
     returnCurrentTab =  (tab) => {
-        if(tab === TabFilters.planets.id) {
-            return  (
-                <React.Fragment>
-                    <div className="card">
-                        <div className="title">
-                            Exemplo de planeta
-                        </div>
-                        <br/>
-                        <div className="body">
-                            Lorem ipsum
-                        </div>
-
-                    </div>
-                    <div className="card">
-                        <div className="title">
-                            Exemplo de planeta
-                        </div>
-                        <br/>
-                        <div className="body">
-                            <div className="flex-1">
-                                Planeta
-                            </div>
-                            <div className="flex-1">
-                                teste
-                            </div>
-                            <div className="flex-1">
-                                teste
-                            </div>
-                        </div>
-
-                    </div>
-                </React.Fragment>
+        const { tabContent, count, loading } = this.state;
+        if (loading) {
+            return (
+                <div>
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <p>
+                        Carregando...
+                    </p>
+                </div>
             );
-        } else if (tab === TabFilters.cars.id){
+        }
+        if(tab != null && tab !== '') {
+            console.log('tabContent ', tabContent);
             return  (
                 <React.Fragment>
-                    <div className="card">
-                        <div className="title">
-                            Exemplo de carro
-                        </div>
-                        <br/>
-                        <div className="body">
-                            Lorem ipsum
-                        </div>
-
+                    <div className="count">
+                        { count }
                     </div>
-                    <div className="card">
-                        <div className="title">
-                            Exemplo de carro
-                        </div>
-                        <br/>
-                        <div className="body">
-                            <div className="flex-1">
-                                Planeta
-                            </div>
-                            <div className="flex-1">
-                                teste
-                            </div>
-                            <div className="flex-1">
-                                teste
-                            </div>
-                        </div>
+                    {
+                        tabContent.map((item) =>
 
-                    </div>
-                </React.Fragment>
-            );
-        } else if (tab === TabFilters.wings.id) {
-            return  (
-                <React.Fragment>
-                    <div className="card">
-                        <div className="title">
-                            Exemplo de wing
-                        </div>
-                        <br/>
-                        <div className="body">
-                            Lorem ipsum
-                        </div>
+                            <div className="card" key={`${item.id}-${item.name}-${item.id *2}`}>
+                                <div className="title">
+                                    {item.name}
+                                </div>
+                                <br/>
+                                <div className="body">
+                                    <div className="flex-1">
+                                        Films: {item.films.length}
+                                    </div>
 
-                    </div>
-                    <div className="card">
-                        <div className="title">
-                            Exemplo de wing
-                        </div>
-                        <br/>
-                        <div className="body">
-                            <div className="flex-1">
-                                Planeta
+                                </div>
                             </div>
-                            <div className="flex-1">
-                                teste
-                            </div>
-                            <div className="flex-1">
-                                teste
-                            </div>
-                        </div>
 
-                    </div>
+                        )
+                    }
                 </React.Fragment>
             );
         }
-        return 'Não foi encontrado nenhum elemento';
+        return null;
     }
 
+    /*
+    * @param Enum ETabFilter
+    * tab {
+    *  id: string,
+    *  name: string,
+    *  endpoint: string
+    * }
+    */
     selectTab = async (tab) => {
         await this.setState({
-            currentTab: tab
+            currentTab: tab,
+            loading: true,
+        }, this.loadFilter(tab.endpoint))
+    }
+
+    /*
+    * @param endpoint, string
+    * defaultValue = 'planets'
+    */
+    loadFilter = (endpoint = 'planets') => {
+        // REF: https://swapi.co/documentation#people
+        const url = `https://swapi.co/api/${endpoint}`;
+        Axios.get(url).then((res) => {
+            console.log('Res: ', res.data);
+            this.setState({
+                tabContent: res.data.results || [],
+                count: res.data.count || 0,
+                loading: false
+            })
+        }).catch((error) => {
+            console.error('Erro on loadFilter: ', error)
         })
     }
 
+
+
     render() {
-        const { loading } = this.props;
         const { currentTab } = this.state;
         return (
             <div className="container">
                 <div className="">
 
                     {
-                        loading ? (
-                            <div>
-                                <img src={logo} className="App-logo" alt="logo" />
-                                <p>
-                                    Carregando...
-                                </p>
-                            </div>
-
-                        ): <div className="tabs">
+                        <div className="tabs">
                             <div className="tab_navigation">
-                                <div className="title"
-                                     onClick={() => this.selectTab(TabFilters.planets.id)}>
+                                <div className={`title ${currentTab.id === TabFilters.planets.id ? 'active' : ''}`}
+                                     onClick={() => this.selectTab(TabFilters.planets)}>
                                     {TabFilters.planets.name}
                                 </div>
-                                <div className="title"
-                                     onClick={() => this.selectTab(TabFilters.cars.id)}>
+                                <div className={`title ${currentTab.id === TabFilters.cars.id ? 'active' : ''}`}
+                                     onClick={() => this.selectTab(TabFilters.cars)}>
                                     {TabFilters.cars.name}
                                 </div>
-                                <div className="title"
-                                     onClick={() => this.selectTab(TabFilters.wings.id)}>
-                                    {TabFilters.wings.name}
+                                <div className={`title ${currentTab.id === TabFilters.species.id ? 'active' : ''}`}
+                                     onClick={() => this.selectTab(TabFilters.species)}>
+                                    {TabFilters.species.name}
                                 </div>
 
                             </div>

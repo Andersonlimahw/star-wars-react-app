@@ -1,14 +1,17 @@
 export default {
     planets: {
         id: 1,
-        name: 'Planets'
+        name: 'Planets',
+        endpoint: 'planets',
     },
     cars:  {
         id: 2,
-        name: 'Cars'
+        name: 'Cars',
+        endpoint: 'vehicles',
     },
-    wings:  {
+    species:  {
         id: 3,
-        name: 'Wings'
+        name: 'Species',
+        endpoint: 'species'
     }
 }

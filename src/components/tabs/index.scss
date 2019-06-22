@@ -11,7 +11,21 @@
     width: auto;
     padding: 32px;
   }
-
+  .count {
+    position: absolute;
+    left: -16px;
+    top: -32px;
+    background: #000;
+    color: #ffe300;
+    border: 2px solid #ffe300;
+    padding: 8px 16px;
+    font-size: 1rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    transition: all 1s ease-in;
+    animation-direction: normal;
+  }
   .tabs {
     color: #fff;
     border-top: green;
@@ -22,6 +36,7 @@
 
     @media(max-width: 767px) {
       padding: 16px;
+      display: none;
     }
 
 
@@ -85,7 +100,8 @@
         border-bottom: #ffe300 2px solid;
         flex: 1;
         transition: 1s all ease-in;
-        &:hover {
+        &:hover,
+        &.active {
           color: #fff;
           cursor: pointer;
           box-shadow: -1px -4px 4px #ffe300;
@@ -97,7 +113,7 @@
       height: auto;
       background: transparent;
       margin: 0 0;
-      color: #333;
+      color: #61dafb;
       padding: 0;
       justify-content: left;
       border: 1px solid #ffe300;

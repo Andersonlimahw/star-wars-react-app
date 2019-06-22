@@ -3,6 +3,7 @@ import Axios from 'axios';
 
 import Timeline from "../../components/timeline";
 import Filters from "../../components/filters";
+import Tabs from "../../components/tabs";
 
 import './index.scss';
 
@@ -58,8 +59,12 @@ export class Page extends React.Component {
         return (
             <div>
                 <div className="container_page">
-
                     <Timeline
+                        peoples={peopleList}
+                        handleFilter={this.listPeopleByName}
+                        loading={peopleList && peopleList.length === 0}
+                    />
+                    <Tabs
                         peoples={peopleList}
                         handleFilter={this.listPeopleByName}
                         loading={peopleList && peopleList.length === 0}

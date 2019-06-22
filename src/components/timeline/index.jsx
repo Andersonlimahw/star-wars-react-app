@@ -20,7 +20,7 @@ export class Timeline extends React.Component {
             <div className="container">
                 <div className="timeline_title">
                     <h1>
-                        Star Wars People
+                        Star Wars
                     </h1>
                 </div>
                 <div className="timeline">

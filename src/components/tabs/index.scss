@@ -12,25 +12,7 @@
     padding: 32px;
   }
 
-  .timeline_title {
-    h1 {
-      color: #ffe300;
-      text-shadow: 2px 2px 1px #333;
-      font-family: sans-serif;
-      transition:all 1s ease-in;
-      &:hover {
-        font-weight: bold;
-        color: #fff;
-        -webkit-transform: rotateX(160deg);
-        -moz-transform: rotateX(160deg);
-        -ms-transform: rotateX(160deg);
-        -o-transform: rotateX(160deg);
-        transform: rotateX(160deg);
-      }
-    }
-  }
-
-  .timeline {
+  .tabs {
     color: #fff;
     border-top: green;
     display: flex;
@@ -55,9 +37,6 @@
       flex: 3;
     }
 
-    .flex-4 {
-      flex: 1;
-    }
 
     .flex-column {
       flex-direction: column;
@@ -94,5 +73,44 @@
         min-width: 200px;
       }
     }
+
+    .tab_navigation {
+      display: flex;
+      align-items: self-start;
+      width: 100%;
+      .title {
+        padding: 2em 0;
+        justify-content: left;
+        color: #ffe300;
+        border-bottom: #ffe300 2px solid;
+        flex: 1;
+        transition: 1s all ease-in;
+        &:hover {
+          color: #fff;
+          cursor: pointer;
+          box-shadow: -1px -4px 4px #ffe300;
+        }
+      }
+    }
+    .container {
+      width: 100%;
+      height: auto;
+      background: transparent;
+      margin: 0 0;
+      color: #333;
+      padding: 0;
+      justify-content: left;
+      border: 1px solid #ffe300;
+      .tab_item {
+        border-bottom: 4px solid #ffe300;
+        transition: all 1s;
+        opacity: 0;
+        display: none;
+        .content {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
   }
 }
